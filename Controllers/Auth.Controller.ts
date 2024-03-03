@@ -9,7 +9,12 @@ import { sendMail } from "../NodeMailer/Nodemailer";
 const AuthRouter = express.Router();
 dotEnv.config();
 const Salt = Number(process.env.SALT);
-
+declare module "express-session" {
+    export interface SessionData {
+      isAuth:boolean;
+      user: { [key: string]: any };
+    }
+  }
 
 AuthRouter.post("/SignUp", async (req, res) => {
   const {

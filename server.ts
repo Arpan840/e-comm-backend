@@ -7,12 +7,7 @@ import session from 'express-session';
 const MongoDBStore = require("connect-mongodb-session")(session);
 dotEnv.config();
 const app = express();
-declare module "express-session" {
-  export interface SessionData {
-    isAuth:boolean;
-    user: { [key: string]: any };
-  }
-}
+
 app.use(express.json());
 const store = new MongoDBStore({
   uri: process.env.Mongo_dv_url,
